@@ -1,0 +1,16 @@
+[UI] Simple page. Activate Web camera, and microphone, reserve them, capture input, present log results.
+[CODE] Web camera input capture (HTML). Periodically (initially constantly). Option to disable sampling. Random pixel sampling to detect presence (?). Alternative (existing) approaches.
+[CODE] Microphone input capture (HTML). Periodically (initially constantly). Post processing (filters, frequency analysis, noise removal)
+[CODE] Capture DBus info about pc usage. Capture and log signals (lock, suspend, resume etc). Combine info to achieve more positive presence results.
+[CODE] Integrate smart phones (bluetooth interface - proximity sensing). (Other interfaces with finer granularity in proximity detection?)
+[CODE][CONSIDER POSSIBILITY] Capture mouse and keyboard activity, while in the background and still privacy preserving (ie. Don't implement a keylogger!). How? (service? browser related events only -as a plugin or extension capturing all input?)
+[UI] Consider a plugin or extension implementation with visual cues about when camera, or mic is sampling for input, and whether presence is detected.
+[CODE] Integrate with uberdust. Create a new virtual sensor. Send values indicating presence (or coded values that can be demuxed into the partial values (mic, camera, other input)
+[CODE][UI] Web socket to server/back (?). Could also use PeerConnection webrtc to combine inputs from browsers/pc in proximity (could also use an interface to define PCs spots/location (or allow them to adv themselves with GPS info/manual xml reporting).
+[DB] Simple DB schema
+[DB][REMOTE] Make use of local DB in user's PC? Sqlite?
+[DB] Sent minimal/privacy securing info back to DB
+[TESTING] 
+[EVALUATION] Make statistics of valid detections/presence inference instances.
+[EVALUATION][ISSUES][WEBCAM] Light issues, always-open, cpu intensive processing tasks, browser tab in the background. Browser support.
+[EVALUATION][ISSUES][MIC] Microphone quality. Distance from user, Distance from crowd, Ability to detect crowd (more than one user)(?)

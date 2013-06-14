@@ -1,0 +1,116 @@
+@-webkit-keyframes glowRed {
+          from {
+            box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+          }
+          50% {
+            box-shadow: rgba(255, 0, 0, 1) 0 0 15px 1px;
+          }
+          to {
+            box-shadow: rgba(255, 0, 0, 0) 0 0 0;
+          }
+        }
+html, body {
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+body {
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: center;
+    box-sizing: border-box;
+}
+article {
+    text-align: center;
+}
+
+#monitor {
+    /*-webkit-transform: scaleX(-1);*/
+    height: 300px;
+    /*-webkit-box-reflect: below 20px -webkit-linear-gradient(top, transparent, transparent 80%, rgba(255,255,255,0.2));*/
+}
+#live {
+    position: absolute;
+    z-index: 1;
+    color: white;
+    font-weight: 600;
+    font-family: Arial;
+    font-size: 16pt;
+    right: 35px;
+    top: 20px;
+    text-shadow: 1px 1px red;
+    letter-spacing: 1px;
+}
+#live:before {
+    content: '';
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: red;
+    position: absolute;
+    left: -20px;
+    margin-top: 5px;
+}
+#gallery img {
+    position: absolute;
+    z-index: -1;
+    height: 75px;
+}
+#gallery img {
+    float: left;
+    height: 75px;
+}
+.container {
+    padding: 10px 25px 5px 25px;
+    background: black;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+h1 {
+    font-weight: 300;
+}
+.blur {
+    -webkit-filter: blur(3px);
+}
+.brightness {
+    -webkit-filter: brightness(5);
+}
+.contrast {
+    -webkit-filter: contrast(8);
+}
+.hue-rotate {
+    -webkit-filter: hue-rotate(90deg);
+}
+.hue-rotate2 {
+    -webkit-filter: hue-rotate(180deg);
+}
+.hue-rotate3 {
+    -webkit-filter: hue-rotate(270deg);
+}
+.saturate {
+    -webkit-filter: saturate(10);
+}
+.grayscale {
+    -webkit-filter: grayscale(1);
+}
+.sepia {
+    -webkit-filter: sepia(1);
+}
+.invert {
+    -webkit-filter: invert(1)
+}
+
+#speechinput input {
+    cursor:pointer;
+    margin:auto;
+    margin:15px;
+    color:transparent;
+    background-color:transparent;
+    border:5px;
+    width:15px;
+    -webkit-transform: scale(3.0, 3.0);
+    -moz-transform: scale(3.0, 3.0);
+    -ms-transform: scale(3.0, 3.0);
+    transform: scale(3.0, 3.0);
+}
