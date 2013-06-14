@@ -8,3 +8,4 @@ core/target/*
 extensions/target/*
 target/*
 webui/target/*
+.idea/
