@@ -21,7 +21,7 @@ function changeFilter(el) {
     }
 }
 
-function gotStream(stream) {
+function webCamGotStream(stream) {
     if (window.URL) {
         video.src = window.URL.createObjectURL(stream);
     } else {
@@ -32,7 +32,7 @@ function gotStream(stream) {
         stream.stop();
     };
 
-    stream.onended = noStream;
+    stream.onended = webcamNoStream;
 
     video.onloadedmetadata = function(e) { // Not firing in Chrome. See crbug.com/110938.
         document.getElementById('splash').hidden = true;
@@ -49,7 +49,7 @@ function gotStream(stream) {
     }, 50);
 }
 
-function noStream(e) {
+function webcamNoStream(e) {
     var msg = 'No camera available.';
     if (e.code == 1) {
         msg = 'User denied access to use camera.';
@@ -113,7 +113,7 @@ function webcamStart(el) {
 
     el.onclick = capture;
     el.textContent = 'Snapshot';
-    navigator.getUserMedia({video: true}, gotStream, noStream);
+    navigator.getUserMedia({video: true}, webCamGotStream, webcamNoStream);
 }
 
 window.addEventListener('keydown', function(e) {

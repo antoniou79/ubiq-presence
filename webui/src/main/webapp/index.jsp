@@ -19,11 +19,29 @@
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/sensor-webcam.js"></script>
     <script type="text/javascript"
-            src="<%=request.getContextPath()%>/js/sensor-mic.js"></script>
+            src="<%=request.getContextPath()%>/js/sensor-soundRecognition.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/sensor-mouse.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/sensor-keyboard.js"></script>
+    <!--- Audio In requisites -->
+    <!-- Slider stuff (TODO: not needed ???) -->
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/common/events.js"></script>
+    <!-- WebGL stuff -->
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/audioVisualizer-gl/o3djs/base.js"></script>
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/audioVisualizer-gl/cameracontroller.js"></script>
+    <!-- TODO(kbr): remove this dependency (TODO: not needed ???) -->
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/audioVisualizer-gl/moz/matrix4x4.js"></script>
+    <!-- Visualizer GL library -->
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/audioVisualizer-gl/visualizer.js"></script>
+
+    <script type="text/javascript"
+            src="<%=request.getContextPath()%>/js/sensor-audioIn.js"></script>
 
     <title>Testing capturing user input</title>
     <script>
@@ -69,7 +87,7 @@
         <%--</div>--%>
     <div class="compact marquee">
         <div id="div_start">
-            <button id="micStart_button" onclick="micStart(event)" >Mic Capture</button>
+            <button id="micStart_button" onclick="micStart(event)" >Recognition Capture</button>
         </div>
     </div>
     <div id="results">
@@ -85,9 +103,25 @@
     </select>
     </div>
     </p>
+    <p><button id="audioIn_button" onclick="audioInStart(this)">Audio In Capture</button></p>
+        <!-- Sliders and other controls will be added here -->
+        <div id="controls"> </div>
+
+        <!-- Analyser type -->
+        <input type="radio" name="radioSet" value="data" onMouseDown="setAudioInAnalysisType(ANALYSISTYPE_FREQUENCY);" />
+        Frequency
+        <input type="radio" name="radioSet" value="data" onMouseDown="setAudioInAnalysisType(ANALYSISTYPE_SONOGRAM);" />
+        Sonogram
+        <input type="radio" name="radioSet" value="data" checked="checked" onMouseDown="setAudioInAnalysisType(ANALYSISTYPE_3D_SONOGRAM);" />
+        3D Sonogram
+        <input type="radio" name="radioSet" value="data" onMouseDown="setAudioInAnalysisType(ANALYSISTYPE_WAVEFORM);"/>
+        Waveform
+        <!-- Canvas tag for WebGL output of audio input analyser -->
     <div id="gallery"></div>
 </article>
 <canvas id="photo" style="display:none"></canvas>
+<canvas id="audioView" width="1280px" height="800px"></canvas>
+
 
 <script>
     function initSensors(){

@@ -14,3 +14,4 @@
 [EVALUATION] Make statistics of valid detections/presence inference instances.
 [EVALUATION][ISSUES][WEBCAM] Light issues, always-open, cpu intensive processing tasks, browser tab in the background. Browser support.
 [EVALUATION][ISSUES][MIC] Microphone quality. Distance from user, Distance from crowd, Ability to detect crowd (more than one user)(?)
+[JS] Make different classes for sensors to avoid obscure/confusing or overlapping/repeated functions.

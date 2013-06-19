@@ -1,0 +1,6 @@
+http://webaudiodemos.appspot.com/
+http://chromium.googlecode.com/svn/trunk/samples/audio/visualizer-live.html
+http://www.smartjava.org/content/exploring-html5-web-audio-visualizing-sound
+http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html
+http://www.html5rocks.com/en/tutorials/getusermedia/intro/
+http://www.html5rocks.com/en/tutorials/webrtc/basics/?redirect_from_locale=fr
