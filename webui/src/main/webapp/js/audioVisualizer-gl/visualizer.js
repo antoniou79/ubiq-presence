@@ -107,7 +107,13 @@ AnalyserView.prototype.initGL = function() {
     this.gl = gl;
     
     // If we're missing this shader feature, then we can't do the 3D visualization.
-    this.has3DVisualizer = (gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS) > 0);
+    try {
+        this.has3DVisualizer = (gl.getParameter(gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS) > 0);
+    }
+    catch(e)
+    {
+        console.log("has3DVisualizer init from gl.MAX_VERTEX_TEXTURE_IMAGE_UNITS failed. If you are in Linux, check if chrome is running with webgl enabled");
+    }
     
     if (!this.has3DVisualizer && this.analysisType == ANALYSISTYPE_3D_SONOGRAM)
         this.analysisType = ANALYSISTYPE_FREQUENCY;

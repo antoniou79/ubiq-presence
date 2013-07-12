@@ -49,6 +49,7 @@ var micStart_button;
 var final_span;
 var interim_span;
 var soundDetectSpan;
+var voiceRecognition
 // Voice detection (continuous)
 var langs =
     [['Afrikaans',       ['af-ZA']],
@@ -159,43 +160,43 @@ function micSensorInit() {
         console.log('no speech recognition capabilities detected!');
     } else {
         micStart_button.style.display = 'inline-block';
-        var recognition = new webkitSpeechRecognition();
-        recognition.continuous = true;
-        recognition.interimResults = true;
+        voiceRecognition = new webkitSpeechRecognition();
+        voiceRecognition.continuous = true;
+        voiceRecognition.interimResults = true;
 
 
-        recognition.onaudiostart = function() {
+        voiceRecognition.onaudiostart = function() {
             console.log('Audio start detect');
         };
 
-        recognition.onaudioend = function() {
+        voiceRecognition.onaudioend = function() {
             console.log('Audio end detect');
         };
 
-        recognition.onspeechstart = function() {
+        voiceRecognition.onspeechstart = function() {
             console.log('Speech start detect');
         };
 
-        recognition.onspeechstart = function() {
+        voiceRecognition.onspeechstart = function() {
             console.log('Speech start detect');
         };
 
-        recognition.onsoundstart = function() {
+        voiceRecognition.onsoundstart = function() {
             console.log('Sound start detect');
             soundDetectSpan.innerHTML +="[GO]";
         };
 
-        recognition.onsoundend = function() {
+        voiceRecognition.onsoundend = function() {
             console.log('Sound Ended detect');
             soundDetectSpan.innerHTML +="[STP]";
         };
 
-        recognition.onstart = function() {
-            console.log('Recognition session On Start');
+        voiceRecognition.onstart = function() {
+            console.log('voiceRecognition session On Start');
             recognizing = true;
         };
 
-        recognition.onerror = function(event) {
+        voiceRecognition.onerror = function(event) {
             console.log('Recognition on error fired');
             if (event.error == 'no-speech') {
                 console.log('no-speech error');
@@ -236,7 +237,7 @@ function micSensorInit() {
 
         };
 
-        recognition.onend = function() {
+        voiceRecognition.onend = function() {
             recognizing = false;
             alert('recognition session Ended');
             console.log('recognition session Ended');
@@ -262,12 +263,12 @@ function micSensorInit() {
         };
 
 
-        recognition.onresult = function(event) {
+        voiceRecognition.onresult = function(event) {
             console.log('Recognition on result fired');
             var interim_transcript = '';
             if (typeof(event.results) == 'undefined') {
-                recognition.onend = null;
-                recognition.stop();
+                voiceRecognition.onend = null;
+                voiceRecognition.stop();
                 //upgrade();
                 alert('Speech detection not supported!' );
                 return;
@@ -288,7 +289,7 @@ function micSensorInit() {
         };
 
 
-        recognition.onnomatch = function(event) {
+        voiceRecognition.onnomatch = function(event) {
             console.log('Recongnition no match found');
         };
     }
@@ -298,21 +299,21 @@ function micSensorInit() {
 
 function micStart(event) {
 
-    if(typeof recognition === "undefined" || recognition == null )  {
+    if(typeof voiceRecognition === "undefined" || voiceRecognition == null )  {
         alert('Unable to start voice recognition');
         console.log('Unable to start voice recognition');
         return;
     }
 
     if (recognizing) {
-        recognition.stop();
+        voiceRecognition.stop();
         alert('recognition stopped');
         console.log('recognition stopped');
         return;
     }
     final_transcript = '';
-    recognition.lang = select_dialect.value;
-    recognition.start();
+    voiceRecognition.lang = select_dialect.value;
+    voiceRecognition.start();
     ignore_onend = false;
     final_span.innerHTML = '';
     interim_span.innerHTML = '';

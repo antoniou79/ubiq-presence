@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,8 +17,8 @@
             src="<%=request.getContextPath()%>/js/jquery-1.9.1.js"></script>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/bootstrap.js"></script>
-    <script type="text/javascript"
-            src="<%=request.getContextPath()%>/js/sensor-webcam.js"></script>
+    <%--<script type="text/javascript"--%>
+    <%--src="<%=request.getContextPath()%>/js/sensor-webcam.js"></script>--%>
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/sensor-soundRecognition.js"></script>
     <script type="text/javascript"
@@ -40,8 +41,10 @@
     <script type="text/javascript"
             src="<%=request.getContextPath()%>/js/audioVisualizer-gl/visualizer.js"></script>
 
+    <%--<script type="text/javascript"--%>
+    <%--src="<%=request.getContextPath()%>/js/sensor-audioIn.js"></script>--%>
     <script type="text/javascript"
-            src="<%=request.getContextPath()%>/js/sensor-audioIn.js"></script>
+            src="<%=request.getContextPath()%>/js/common/common.js"></script>
 
     <title>Testing capturing user input</title>
     <script>
@@ -69,13 +72,16 @@
     <%--<h1>CSS Filters Test</h1>--%>
     <section id="app" hidden>
         <div class="container">
-            <span id="live">ON</span><video id="monitor" autoplay onclick="changeFilter(this)" title="Click to see different filters"></video>
+            <span id="live">ON</span>
+            <video id="monitor" autoplay onclick="changeFilter(this)" title="Click to see different filters">
+            </video>
         </div>
         <%--<p>Click the video to see different CSS filters</p>--%>
 
     </section>
 
-    <p><button id="webcamStart_button" onclick="webcamStart(this)">Webcam Capture</button></p>
+    <%--<p><button id="webcamStart_button" onclick="webcamStart(this)">Webcam Capture</button></p>--%>
+    <p><button id="audioAndVidStart_button" onclick="audioAndVideoInChromeInit(this)">Webcam/Audio Capture</button></p>
     <div id="splash">
         <p id="errorMessage">
             <%--&uarr;<br>Click to begin--%>
@@ -94,16 +100,19 @@
         <span id="final_span" class="final"></span>
         <span id="interim_span" class="interim"></span>
         <p>
-        <span id="soundDetectSpan" class="interim"></span>
+            <span id="soundDetectSpan" class="interim"></span>
         <p>
     </div>
     <div class="compact marquee" id="div_language">
         <select id="select_language" onchange="updateCountry()">
-        </select>&nbsp;&nbsp; <select id="select_dialect">
-    </select>
+        </select>&nbsp;&nbsp;
+        <select id="select_dialect">
+        </select>
     </div>
     </p>
-    <p><button id="audioIn_button" onclick="audioInStart(this)">Audio In Capture</button></p>
+    <p>
+    <div class="compact marquee">
+        <%--<button id="audioIn_button" onclick="audioInStart(this)">Audio In Capture</button></p>--%>
         <!-- Sliders and other controls will be added here -->
         <div id="controls"> </div>
 
@@ -116,17 +125,21 @@
         3D Sonogram
         <input type="radio" name="radioSet" value="data" onMouseDown="setAudioInAnalysisType(ANALYSISTYPE_WAVEFORM);"/>
         Waveform
-        <!-- Canvas tag for WebGL output of audio input analyser -->
+    </div>
+    <!-- Canvas tag for WebGL output of audio input analyser -->
     <div id="gallery"></div>
 </article>
 <canvas id="photo" style="display:none"></canvas>
 <canvas id="audioView" width="1280px" height="800px"></canvas>
+<p></p>
+<canvas id="canvas-source" width="640" height="480"></canvas>
+<canvas id="canvas-blended" width="640" height="480"></canvas>
 
 
 <script>
     function initSensors(){
         micSensorInit();
-        webcamSensorInit();
+        //webcamSensorInit();
     }
 </script>
 

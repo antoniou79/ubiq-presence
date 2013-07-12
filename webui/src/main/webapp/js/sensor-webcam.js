@@ -57,31 +57,31 @@ function webcamNoStream(e) {
     document.getElementById('errorMessage').textContent = msg;
 }
 
-function capture() {
-    if (intervalId) {
-        clearInterval(intervalId);
-        intervalId = null;
-        return;
-    }
-
-    intervalId = setInterval(function() {
-        ctx.drawImage(video, 0, 0);
-        var img = document.createElement('img');
-        img.src = canvas.toDataURL('image/webp');
-
-        var angle = Math.floor(Math.random() * 36);
-        var sign = Math.floor(Math.random() * 2) ? 1 : -1;
-        img.style.webkitTransform = 'rotateZ(' + (sign * angle) + 'deg)';
-
-        var maxLeft = document.body.clientWidth;
-        var maxTop = document.body.clientHeight;
-
-        img.style.top = Math.floor(Math.random() * maxTop) + 'px';
-        img.style.left = Math.floor(Math.random() * maxLeft) + 'px';
-
-        gallery.appendChild(img);
-    }, 150);
-}
+//function capture() {
+//    if (intervalId) {
+//        clearInterval(intervalId);
+//        intervalId = null;
+//        return;
+//    }
+//
+//    intervalId = setInterval(function() {
+//        ctx.drawImage(video, 0, 0);
+//        var img = document.createElement('img');
+//        img.src = canvas.toDataURL('image/webp');
+//
+//        var angle = Math.floor(Math.random() * 36);
+//        var sign = Math.floor(Math.random() * 2) ? 1 : -1;
+//        img.style.webkitTransform = 'rotateZ(' + (sign * angle) + 'deg)';
+//
+//        var maxLeft = document.body.clientWidth;
+//        var maxTop = document.body.clientHeight;
+//
+//        img.style.top = Math.floor(Math.random() * maxTop) + 'px';
+//        img.style.left = Math.floor(Math.random() * maxLeft) + 'px';
+//
+//        gallery.appendChild(img);
+//    }, 150);
+//}
 
 function webcamSensorInit() {
     app = document.getElementById('app');
@@ -111,8 +111,8 @@ function webcamStart(el) {
         return;
     }
 
-    el.onclick = capture;
-    el.textContent = 'Snapshot';
+    //el.onclick = capture;
+    //el.textContent = 'Snapshot';
     navigator.getUserMedia({video: true}, webCamGotStream, webcamNoStream);
 }
 
